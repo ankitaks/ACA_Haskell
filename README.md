@@ -1,18 +1,10 @@
 # ACA Haskell
 ACA Project Haskell
-
-Members:
-
-* Ankit Kumar Singh
-* Sudhanshu Jaiswal
-* Ahsan 
-* Abhishek
-
-## Initial Tasks
-1. Command line navigation: mkdir, cd, rm, printenv, man
-2. Basic file manipulation: cut, paste, awk
-3. Searching : grep, regex
-4. Haskell stack
-5. Haskell stack setup with latest version of GHC
-6. Basic Git : fork, branch, minor change, remote host update, pull request
-7. Basic text editing using vim/emacs
+--Ankit Kumar Singh
+haskell stack installed 
+GHC installed
+Got familiar with VIM and GIT 
+also tried few of haskell codes;
+tried forking on git on web version 
+bit confuesd with the git working..
+aslo tried learning the file manipulation commands mainly moving, making , copying and removing a directory and file.
