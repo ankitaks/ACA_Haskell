@@ -5,4 +5,5 @@ GHC installed
 GIT installed
 Got familiar with VIM and GIT 
 also tried few of haskell codes;
+also used file navigation and manipulation
 
