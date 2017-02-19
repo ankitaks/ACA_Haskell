@@ -18,3 +18,4 @@ sum' (x ,n ) =
 -- pn x n  = Pn(x) in Taylor Series
 pn x n  = sum' (x,n)
 en x n  = sin x - pn x n
+
