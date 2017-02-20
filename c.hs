@@ -2,8 +2,8 @@ map' ::  (a -> b)  -> [a] -> [b]
 map' _ [] = [] 
 map' f (x:xs) = f x : map' f xs
 ---folds --- 
---foldl' f acc [x] =  acc f x
---foldl' f acc (x:xs) = foldl' f (acc f x ) xs
+--foldl' f acc [] = acc
+foldl' f acc (xs) = if ( length xs == 1 ) then acc f head xs else foldl' f ( acc f head xs) drop 1 xs
 ---------
 --
 --foldr' f acc [x] = x f acc
