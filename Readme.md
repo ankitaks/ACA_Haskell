@@ -1,9 +1,8 @@
-#ACA_Haskell
-Ankit Kumar Singh
-haskell stack installed 
-GHC installed
-GIT installed
-Got familiar with VIM and GIT 
-also tried few of haskell codes;
-also used file navigation and manipulation
+# ACA Haskell
+ACA Project Haskell
+        Ankit Kumar Singh
+        IIT Kanpur.
+Mentor :
+         Prannnay Khosla 
+         IIT Kanpur.  
 
