@@ -2,11 +2,15 @@ import Data.Array.IO
 import Data.List
 import System.IO
 import Data.Typeable
+--myGroup
+myGroup :: [Char] -> Int -> [[Char]]
+myGroup xs n = [drop ((x-1)*n) (take (x*n) xs)| x<- [1..n]]
+--
 --import htcto.hs
 won xs n c=
-  let y =  group xs
-      y' = group (transP xs n)
-      diag = group (dia xs n ++ "*")
+  let y =  myGroup xs n
+      y' = myGroup (transP xs n) n
+      diag = myGroup (dia xs n ) n
       z = replicate n c
       v = elem z y
       v' =  elem z y'
@@ -16,7 +20,7 @@ dia xs n  = [xs !! x | x <- [0,(n+1)..((n*n)-1)]]
 transP xs n =[ xs !! y | x<-[0..(n-1)],y <- [x,x+n..(n*(n-1)+x)]]
 isOver :: [Char] -> Int ->Char-> String
 isOver xs n c
-        | won xs n c = "Player"++ getNum c ++"Wins !!"
+        | won xs n c = "Player  "++ getNum c ++"  Wins !!"
         | elem '_' xs = "NO"
         | otherwise  = "It's a Tie !! \n Game Over!!"
 ----end of htcto.hs
@@ -92,5 +96,8 @@ main =
        do
           n <- getInt "Enter the size  of board : "
           let  xs = myMat (n*n)
+          putStrLn "Initial Board  \n"
           display xs n
+          putStrLn "Player 1 is 'X' "
+          putStrLn "Player 2 is 'O' "
           startGame xs n 'X'
