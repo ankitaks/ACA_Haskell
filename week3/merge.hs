@@ -1,0 +1,6 @@
+--merge sort  algorithm 
+merge [] xs = xs
+merge ys [] = ys
+merge (x:x)  (y:ys)
+              | x < y = x:merge xs (y:ys)
+              | otherwise  = y: merge (x:xs) ys

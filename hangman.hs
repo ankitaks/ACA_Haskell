@@ -9,9 +9,9 @@ import System.IO
 myGetChar :: IO Char
 -- myGetChar = a  function that takes a input from stdin without printing       it on the console
 myGetChar  = do
-               hSetEcho stdin False
+               hSetEcho stdin False --makes the input invisible on StdOut
                c <- getChar 
-               hSetEcho stdin True
+               hSetEcho stdin True --makes the input visible on StdOut
                return c
 myGetLine :: IO String 
 --myGetLine  = a function that reads the input 
@@ -24,7 +24,9 @@ myGetLine = do
                       xs <- myGetLine 
                       return (x:xs)
 part :: String -> String -> String
-part xs ys = [if elem x ys then x else '*' | x <- xs ]
+part xs ys
+           |length xs >=  length ys  = [if elem x ys then x else '*' | x <- xs ]
+           |otherwise  = "Try Again!!"
 guessW :: String -> IO ()
 guessW wrd = 
             do 
