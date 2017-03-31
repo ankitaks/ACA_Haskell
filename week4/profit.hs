@@ -12,50 +12,68 @@ data Board=Board
       ,profit :: Int
       ,gameStatus:: Int
       ,gameSize :: Int
-     }--deriving (Show,Read)
+     } deriving (Show)
                           ------Board Operations
 -- ================================================================================
 main =
  do
    n <- getInt " Enter Size of the Board  "
-   let k =  Board{profit=0,gameSize = n, gameStatus= 2, listX =[],listO =[],empty = myList n}
-   o<-getInt " Enter the pos of O  "
-   --
-   playGame k True 0
+   let k =  Board{profit=0,gameSize = n, gameStatus= 2, listX =[],listO =[],empty = [1..(n*n)]}
+   playGame k False
 -- ================================================================================
 first (a,_) = a
 secnd (a,b) = b
 checkSize n =  n>2 && n<= 10
 -- ================================================================================
---playGame :: Board -> Bool ->Board  game = Board{empty=[1..gs],listX=[],listO=[],profit=0,gameStatus=2,gameSize = gs}
-playGame b1 cpuTurn  pos =
+addSpace :: [Char] -> [Char]
+addSpace [] = []
+addSpace (x:xs) = ' ':x:' ': addSpace xs
+display :: [Char] -> Int -> IO()
+display [] n = putStrLn " "
+display xs n =
  do
-  if(cpuTurn)
-    then
-     do
-        putStrLn "CPUs turn"
-        let b2 = first (maximum' ((map(\x -> (x,minimax x 0 False))[updateX b1 y |y <- empty b1] ) ) )
-            gs = gameStatus b2
-        if(gs == 1 )
-         then
-            do putStrLn " CPU Wins !!"
-        else
-            if(gs == 0 ) then do putStrLn "Its Tie"
-            else
-            do
-               n <- getInt "Enter the position for O "
+      let y =  (take n xs)
+      putStrLn (addSpace y)
+      display  (drop n xs)  n
+-- ================================================================================
+--playGame :: Board -> Bool ->Board  game = Board{empty=[1..gs],listX=[],listO=[],profit=0,gameStatus=2,gameSize = gs}
+playGame b1 cpuTurn  =
+ do
+          let n =  gameSize b1
+   -- if(validate pos n)
+ --       then
+          if(cpuTurn)
+              then
+              do
+                putStrLn "CPUs turn"
+                let b2 = first (maximum' ((map(\x -> (x,minimax x 0 False))[updateX b1 y |y <- empty b1] ) ) )
+                    gs = gameStatus b2
+                display (genList b2) (n)
+                if(gs == 1)then do putStrLn " CPU Wins !!"
+                else
+                    if(gs == 0 ) then do putStrLn "Its Tie"
+                     else
+                      do
+                         playGame b2 False
+          else
+                do
+                  putStrLn "Your Turn"
+                  pos<- getInt "Enter position of O "
+                  let  b2 = updateO b1 pos
+                       gs = gameStatus b2
+                  display (genList b2) (n)
+                  if ( gs == -1 )
+                   then do putStrLn "You Won!!"
+                  else
+                   if (gs ==  0)
+                   then do putStrLn "Tie!!"
+                    else do playGame b2 True
+  --  else
+    --   do
+--        putStrLn "OOPS !! given position is INVALID :-( Try Again!!"
+   --     n1 <- getInt "Enter the position for O "
+      --  playGame b1 False n1
 
-               playGame b2 False n
-   else
-       do
-            let  b2 = updateO b1 pos
-                 gs = gameStatus b2
-            if ( gs == -1 )
-             then do putStrLn "You Won!!"
-            else
-             if (gs ==  0)
-             then do putStrLn "Tie!!"
-              else do playGame b2 True 0
 
 -- ==
 
@@ -64,7 +82,7 @@ playGame b1 cpuTurn  pos =
     --   putStrLn "Improper Size"
 -- ================================================================================
 validate :: Int -> Int -> Bool
-validate i n = ( i >=1 && i<=n )
+validate i n = ( i >=1 && i<=(n^2) )
 -- ================================================================================
 minimax :: Board ->Int->Bool-> Int
 minimax brd1 depth maximize =
@@ -101,7 +119,7 @@ data Profit = Profit
           ,gm :: [[Char]]
           ,ne :: Int
           ,gl :: Int
-        }
+        } deriving (Show)
 -- ================================================================================
 
 findP :: Board -> Profit
