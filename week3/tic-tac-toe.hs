@@ -2,6 +2,7 @@ import Data.Array.IO
 import Data.List
 import System.IO
 import Data.Typeable
+-- ================================================================================
 {-
 myGroup :
            function that converts  a char list into char matrix
@@ -15,6 +16,7 @@ myGetLine  = do
                else
                    do  xs <- myGetLine
                        return (x:xs)
+-- ================================================================================
 getInt :: String -> IO Int
 getInt s =
            do
@@ -22,6 +24,7 @@ getInt s =
               x<-myGetLine
               let z = read x::Int
               return z
+-- ================================================================================
 getInt' :: String ->IO [Int]
 getInt' xs = do
                 putStr xs
@@ -30,10 +33,10 @@ getInt' xs = do
                 x<- myGetLine
                 let z= read x::Int
                 return [y,z]
---------
+-- ================================================================================
 myGroup :: [Char] -> Int -> [[Char]]
 myGroup xs n = [drop ((x-1)*n) (take (x*n) xs)| x<- [1..n]]
-
+-- ================================================================================
 won xs n c=
   let y =  myGroup xs n
        --myGroup (transP xs n) n
@@ -48,15 +51,18 @@ won xs n c=
  dia : a function that returns the list containing the
        diagonal entries of the matrix
  -}
+-- ================================================================================
 dia xs n  = [xs !! x | x <- [0,(n+1)..((n*n)-1)]]
+-- ================================================================================
 transP xs =transpose xs
+-- ================================================================================
 isOver :: [Char] -> Int ->Char-> String
 isOver xs n c
         | won xs n c = "Player  "++ getNum c ++"  Wins !!"
         | elem '_' xs = "NO"
         | otherwise  = "It's a Tie !! \n Game Over!!"
 ----
-
+-- ================================================================================
 getNum c
         | c == 'X' =['1']
         | otherwise = ['2']
