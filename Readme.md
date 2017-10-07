@@ -3,7 +3,7 @@
        -- Ankit Kumar Singh
        -- IIT Kanpur.
 
- ##Mentor :
+ ## Mentor :
         -- Prannnay Khosla 
         -- IIT Kanpur.  
 
