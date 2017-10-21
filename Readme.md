@@ -8,4 +8,4 @@
 *Tic-Tac-Toe* is a single player vs cpu game
 
 [Haskell Crypto](http://github.com/ankitaks/ACA_Haskell )
-[Tic-Tac-Toe](http://github.com/ankitaks/ACA_Haskell/week4)
+[Tic-Tac-Toe](https://github.com/ankitaks/ACA_Haskell/tree/master/week4)
